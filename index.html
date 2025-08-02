@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Portal - Web ini dibuat hanya jadi motivasi aja </title>
+    <style>
+        /* Gaya Umum */
+        body {
+            background-color: #000;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: #0f0;
+        }
+
+        /* Animasi Welcome Text */
+        .hacker-text {
+            color: #0f0;
+            text-align: center;
+            text-shadow: 0 0 5px #0f0;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .hacker-text::before {
+            content: ">";
+            position: absolute;
+            left: -20px;
+            animation: blink 1s infinite;
+        }
+        
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #0f0;
+            animation: typing 4s steps(50) 1s 1 normal both,
+                       blink-caret 0.75s step-end infinite;
+        }
+        
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        /* Gaya Login Box */
+        .login-box {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff00;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px #00ff00;
+            width: 300px;
+            text-align: center;
+            animation: glow 2s infinite alternate;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards 5s;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            background: #111;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 5px #00ff00;
+        }
+
+        button {
+            background: #00aa00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        .error {
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success {
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Animations */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #0f0 }
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1 }
+            50% { opacity: 0 }
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; box-shadow: 0 0 5px #0f0; }
+            to { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; box-shadow: 0 0 20px #0f0; }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes hacking {
+            0% { transform: translateX(0) }
+            25% { transform: translateX(-5px) }
+            50% { transform: translateX(5px) }
+            75% { transform: translateX(-5px) }
+            100% { transform: translateX(0) }
+        }
+
+        .hacking-effect {
+            animation: hacking 0.1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <audio id="success-sound" src="https://files.catbox.moe/3bbg7u.mp3" preload="auto"></audio>
+
+    <div class="hacker-text">
+        <h1 class="typing">WELCOME TO WEB HACKER TUAN</h1>
+        <br>
+        <h2 class="glow">SAYA ADALAH ALYA STORE & FAJAR KURNIAWAN</h2>
+    </div>
+
+    <div class="login-box" id="loginBox">
+        <div class="input-group">
+            <label>USERNAME</label>
+            <input type="text" id="username" placeholder="Enter username...">
+        </div>
+        
+        <div class="input-group">
+            <label>PASSWORD</label>
+            <input type="password" id="password" placeholder="Enter password...">
+        </div>
+        
+        <button onclick="checkLogin()">ACCESS SYSTEM</button>
+        
+        <p id="error-message" class="error">ACCESS DENIED!</p>
+        <p id="success-message" class="success">ACCESS GRANTED! Loading system...</p>
+    </div>
+
+    <script>
+        function checkLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMsg = document.getElementById("error-message");
+            const successMsg = document.getElementById("success-message");
+            const loginBox = document.getElementById("loginBox");
+            const successSound = document.getElementById("success-sound");
+            
+            if (username === "FAJAR" && password === "INI BOSS") {
+                // Play success sound
+                successSound.play();
+                
+                // Show success message
+                errorMsg.style.display = "none";
+                successMsg.style.display = "block";
+                
+                // Add hacking effect
+                loginBox.classList.add("hacking-effect");
+                
+                // Redirect after 3 seconds
+                setTimeout(() => {
+                    // window.location.href = "dashboard.html";
+                    alert("Welcome to the system, Boss!");
+                    loginBox.classList.remove("hacking-effect");
+                }, 3000);
+            } else {
+                // Show error message
+                errorMsg.style.display = "block";
+                successMsg.style.display = "none";
+                setTimeout(() => { errorMsg.style.display = "none"; }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
