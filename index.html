@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacker Portal - Web ini dibuat hanya jadi motivasi aja </title>
+    <title>Hacker Portal - Alya Store & Fajar Kurniawan</title>
     <style>
         /* Gaya Umum */
         body {
@@ -71,6 +71,285 @@
         label {
             display: block;
             margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            background: #111;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 5px #00ff00;
+        }
+
+        button {
+            background: #00aa00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        .error {
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success {
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Animations */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #0f0 }
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1 }
+            50% { opacity: 0 }
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #0f0, 0 0 10px #0f0; box-shadow: 0 0 5px #0f0; }
+            to { text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; box-shadow: 0 0 20px #0f0; }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes hacking {
+            0% { transform: translateX(0) }
+            25% { transform: translateX(-5px) }
+            50% { transform: translateX(5px) }
+            75% { transform: translateX(-5px) }
+            100% { transform: translateX(0) }
+        }
+
+        .hacking-effect {
+            animation: hacking 0.1s linear infinite;
+        }
+
+        /* Menu Hacker Styles */
+        #hackerMenu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            transition: all 0.5s ease;
+        }
+
+        /* Posisi setelah login */
+        #hackerMenu.logged-in {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border: 2px solid #0f0;
+            border-radius: 10px;
+            box-shadow: 0 0 30px #0f0;
+        }
+
+        #menuButton {
+            background-color: #000;
+            color: #0f0;
+            border: 1px solid #0f0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        #dropdownMenu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: #111;
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            padding: 10px;
+            min-width: 200px;
+        }
+
+        /* Dropdown setelah login */
+        #hackerMenu.logged-in #dropdownMenu {
+            position: relative;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            display: block;
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .menu-item {
+            display: block;
+            color: #0f0;
+            padding: 8px 0;
+            text-decoration: none;
+            font-family: monospace;
+        }
+
+        .menu-item:hover {
+            text-shadow: 0 0 5px #0f0;
+        }
+
+        .menu-tooltip {
+            color: #0f0;
+            font-size: 12px;
+            margin-top: 10px;
+            border-top: 1px dashed #0f0;
+            padding-top: 5px;
+            font-family: monospace;
+        }
+
+        /* Konten setelah login */
+        .logged-in-content {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <audio id="success-sound" src="https://files.catbox.moe/3bbg7u.mp3" preload="auto"></audio>
+
+    <!-- Hacker Menu -->
+    <div id="hackerMenu">
+        <button id="menuButton">MENU HACKER</button>
+        <div id="dropdownMenu">
+            <a href="https://panelmurni.pnl.my.id/alyastoremodecuan/banana/" class="menu-item" target="_blank">PANEL MURNI</a>
+            <div class="menu-tooltip">MINTAK AJARIN KE PEMBUAT WEB AJA🐦‍🔥</div>
+        </div>
+    </div>
+
+    <div class="hacker-text">
+        <h1 class="typing">WELCOME TO WEB HACKER TUAN</h1>
+        <br>
+        <h2 class="glow">SAYA ADALAH ALYA STORE & FAJAR KURNIAWAN</h2>
+    </div>
+
+    <div class="login-box" id="loginBox">
+        <div class="input-group">
+            <label>USERNAME</label>
+            <input type="text" id="username" placeholder="Enter username...">
+        </div>
+        
+        <div class="input-group">
+            <label>PASSWORD</label>
+            <input type="password" id="password" placeholder="Enter password...">
+        </div>
+        
+        <button onclick="checkLogin()">ACCESS SYSTEM</button>
+        
+        <p id="error-message" class="error">ACCESS DENIED!</p>
+        <p id="success-message" class="success">ACCESS GRANTED! Loading system...</p>
+    </div>
+
+    <script>
+        // Menu functionality
+        const menuButton = document.getElementById('menuButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const hackerMenu = document.getElementById('hackerMenu');
+
+        menuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!hackerMenu.classList.contains('logged-in')) {
+                dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+            }
+        });
+
+        document.addEventListener('click', function() {
+            if (!hackerMenu.classList.contains('logged-in')) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+        dropdownMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Login functionality
+        function checkLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMsg = document.getElementById("error-message");
+            const successMsg = document.getElementById("success-message");
+            const loginBox = document.getElementById("loginBox");
+            const successSound = document.getElementById("success-sound");
+            const hackerText = document.querySelector(".hacker-text");
+            
+            if (username === "FAJAR" && password === "INI BOSS") {
+                // Play success sound
+                successSound.play();
+                
+                // Show success message
+                errorMsg.style.display = "none";
+                successMsg.style.display = "block";
+                
+                // Add hacking effect
+                loginBox.classList.add("hacking-effect");
+                
+                // After 3 seconds
+                setTimeout(() => {
+                    // Hide login box and welcome text
+                    loginBox.style.display = "none";
+                    hackerText.style.display = "none";
+                    
+                    // Change menu position and style
+                    hackerMenu.classList.add("logged-in");
+                    menuButton.textContent = "SYSTEM MENU";
+                    dropdownMenu.style.display = "block";
+                    
+                    // Remove hacking effect
+                    loginBox.classList.remove("hacking-effect");
+                    
+                    // Show welcome message
+                    alert("Welcome to the system, Boss!");
+                }, 3000);
+            } else {
+                // Show error message
+                errorMsg.style.display = "block";
+                successMsg.style.display = "none";
+                setTimeout(() => { errorMsg.style.display = "none"; }, 2000);
+            }
+        }
+    </script>
+</body>
+    </html>
         }
 
         input {
